@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galería</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="../assets/imagenes/logo-municipio-palmar-grande.png" type="image/x-icon">
+  <style>
+    :root {
+      --gap: 12px;
+      --columnas: 1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    body.visor-abierto {
+      overflow: hidden;
+    }
+
+    /* Collage: las columnas aumentan con el ancho de pantalla */
+    .collage {
+      max-width: 1800px;
+      margin: 0 auto;
+      column-count: var(--columnas);
+      column-gap: var(--gap);
+      padding: 10px;
+    }
+
+    @media (min-width: 480px) {
+      :root {
+        --columnas: 2;
+      }
+    }
+
+    @media (min-width: 768px) {
+      :root {
+        --columnas: 3;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      :root {
+        --columnas: 4;
+      }
+    }
+
+    @media (min-width: 1500px) {
+      :root {
+        --columnas: 5;
+      }
+    }
+
+    .foto {
+      display: block;
+      width: 100%;
+      margin: 0 0 var(--gap);
+      padding: 0;
+      border: 0;
+      background: #e6e6e6;
+      cursor: zoom-in;
+      overflow: hidden;
+      break-inside: avoid;
+    }
+
+    .foto img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform .4s ease, filter .4s ease;
+    }
+
+    .foto:hover img {
+      transform: scale(1.03);
+      filter: brightness(.9);
+    }
+
+    .foto:focus-visible {
+      outline: 3px solid #1d6fd1;
+      outline-offset: 2px;
+    }
+
+    /* ---------- Visor (lightbox) ---------- */
+    .visor {
+      border: 0;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      background: rgba(0, 0, 0, .92);
+      color: #fff;
+    }
+
+    .visor::backdrop {
+      background: rgba(0, 0, 0, .92);
+    }
+
+    .visor[open] {
+      display: grid;
+      place-items: center;
+      animation: fundido .2s ease;
+    }
+
+    .visor img {
+      max-width: min(100vw - 32px, 1600px);
+      max-height: calc(100vh - 96px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .visor-btn {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, .12);
+      border: 0;
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      transition: background .2s ease;
+    }
+
+    .visor-btn:hover {
+      background: rgba(255, 255, 255, .28);
+    }
+
+    .visor-btn:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+
+    .visor-cerrar {
+      top: 16px;
+      right: 16px;
+    }
+
+    .visor-prev {
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .visor-sig {
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .visor-contador {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: .9rem;
+      opacity: .8;
+    }
+
+    @media (max-width: 640px) {
+
+      .visor-prev,
+      .visor-sig {
+        top: auto;
+        bottom: 8px;
+        transform: none;
+      }
+
+      .visor-prev {
+        left: 16px;
+      }
+
+      .visor-sig {
+        right: 16px;
+      }
+
+      .visor img {
+        max-height: calc(100vh - 140px);
+      }
+    }
+
+    @keyframes fundido {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header" id="inicio">
+    <a class="brand" href="#inicio" aria-label="Palmar Grande - Inicio">
+
+      <span>
+        <strong>PALMAR<br>GRANDE</strong>
+        <small>CORRIENTES · ARGENTINA</small>
+      </span>
+    </a>
+
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="../index.html">Inicio</a>
+      <a href="./historia.html">Historia</a>
+      <a href="./turismo.html">Turismo</a>
+      <a href="./naturaleza.html">Naturaleza</a>
+      <a href="./cultura.html">Cultura</a>
+      <a class="active" href="./galeria.html">Galería</a>
+      <a href="./turismo.html">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="collage" id="collage">
+    <button class="foto" type="button" aria-label="Ver foto 1 en grande">
+      <img src="../assets/imagenes/Imagenes_de_palmar/cruz_jose-actual.jpeg" width="800" height="1000"
+        alt="Descripción de la foto 1" loading="lazy" title="imagen de la ultima peregrinacion de la Crúz Jose">
+    </button>
+    <button class="foto" type="button" aria-label="Ver foto 2 en grande">
+      <img src="../assets/imagenes/Imagenes_de_palmar/jabira.jpg" width="800" height="600"
+        alt="Descripción de la foto 2" loading="lazy" title="Imagen de un Jabiru, con sus crias">
+    </button>
+    <button class="foto" type="button" aria-label="Ver foto 3 en grande">
+      <img src="../assets/imagenes/Imagenes_de_palmar/naturaleza_garsa_mora.jpeg" width="800" height="800"
+        alt="Descripción de la foto 3" loading="lazy">
+    </button>
+    <button class="foto" type="button" aria-label="Ver foto 4 en grande">
+      <img src="../assets/imagenes/Imagenes_de_palmar/naturaleza_penitente.jpg" width="800" height="1100"
+        alt="Descripción de la foto 4" loading="lazy" title="Imagen de una Espatula rosada">
+    </button>
+    <button class="foto" type="button" aria-label="Ver foto 5 en grande">
+      <img src="../assets/imagenes/Imagenes_de_palmar/guabiyu.jpg" width="800" height="560"
+        alt="Descripción de la foto 5" loading="lazy" title="Imagen de un arbol de guabiyu de la zona">
+    </button>
+    <button class="foto" type="button" aria-label="Ver foto 6 en grande">
+      <img src="../assets/imagenes/Imagenes_de_palmar/lapacho.jpg" width="800" height="900"
+        alt="Descripción de la foto 6" loading="lazy" title="Imagen de un lapacho en flor">
+    </button>
+    <button class="foto" type="button" aria-label="Ver foto 7 en grande">
+      <img src="../assets/imagenes/Imagenes_de_palmar/ceibo.jpg" width="800" height="700" alt="Descripción de la foto 7"
+        loading="lazy" title="Imagen de un ceibo Florecido ">
+    </button>
+    <button class="foto" type="button" aria-label="Ver foto 8 en grande">
+      <img src="../assets/imagenes/Imagenes_de_palmar/atardecer.jpeg" width="800" height="1000"
+        alt="Descripción de la foto 8" loading="lazy" title="Imagen de un bello atardecer en la plaza de Palmar Grande">
+    </button>
+    <button class="foto" type="button" aria-label="Ver foto 9 en grande">
+      <img src="../assets/imagenes/Imagenes_de_palmar/aromito.jpg" width="800" height="640"
+        alt="Descripción de la foto 9" loading="lazy" title="Imagen de un aromito">
+    </button>
+    <button class="foto" type="button" aria-label="Ver foto 10 en grande">
+      <img src="../assets/imagenes/Imagenes_de_palmar/mbaipy.jpg" width="800" height="1200"
+        alt="Descripción de la foto 10" loading="lazy" title="Imagen de una de las comidas tipicas de la zona">
+    </button>
+    <button class="foto" type="button" aria-label="Ver foto 11 en grande">
+      <img src="../assets/imagenes/Imagenes_de_palmar/aguai.jpg" width="800" height="760"
+        alt="Descripción de la foto 11" loading="lazy" title="Imagen de un aguai">
+    </button>
+    <button class="foto" type="button" aria-label="Ver foto 12 en grande">
+      <img src="../assets/imagenes/Imagenes_de_palmar/pacaa.jpg" width="800" height="900"
+        alt="Descripción de la foto 12" loading="lazy" title="Imagen de una pacaa ave de la zona">
+    </button>
+  </section>
+
+  <dialog class="visor" id="visor" aria-label="Visor de imágenes">
+    <button class="visor-btn visor-cerrar" type="button" aria-label="Cerrar">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+    <button class="visor-btn visor-prev" type="button" aria-label="Foto anterior">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M15 5l-7 7 7 7" />
+      </svg>
+    </button>
+    <img id="visor-img" src="" alt="">
+    <button class="visor-btn visor-sig" type="button" aria-label="Foto siguiente">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+    <span class="visor-contador" id="visor-contador"></span>
+  </dialog>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand"> <strong>PALMAR GRANDE</strong></div>
+        <p>Un pueblo con historia, tradición y un futuro lleno de oportunidades.</p>
+        <div class="socials">
+          <a class="face-logo" href="https://www.facebook.com/profile.php?id=100064782816824" aria-label="Facebook"></a>
+          <a class="insta-logo" href="instagram.com"></a>
+        </div>
+      </div>
+      <div>
+        <h3>NAVEGACIÓN</h3>
+        <a href="../index.html">Inicio</a>
+        <a href="./historia.html">Historia</a>
+        <a href="./turismo.html">Turismo</a>
+        <a href="./naturaleza.html">Naturaleza</a>
+        <a href="./cultura.html">Cultura</a>
+      </div>
+      <div>
+        <h3>INFORMACIÓN</h3>
+        <p>Municipalidad de Palmar Grande</p>
+        <p>Palmar Grande, Corrientes</p>
+        <p></p>
+        <p>✉ secretariapalmargrande@outlook.es</p>
+      </div>
+      <div>
+        <h3>NEWSLETTER</h3>
+        <p>Suscribite para recibir novedades y eventos.</p>
+        <form class="newsletter" onsubmit="return subscribe(event)"><input type="email"
+            placeholder="Tu correo electrónico" required><button>Suscribirme</button></form>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Palmar Grande · Corrientes, Argentina. ISFD Sub Sede Palmar Grande. TSDS</div>
+  </footer>
+  <script>const menuButton = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.main-nav');
+
+    menuButton?.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    document.querySelectorAll('.main-nav a').forEach(link => {
+      link.addEventListener('click', () => nav.classList.remove('open'));
+    });</script>
+
+  <script>
+    const fotos = [...document.querySelectorAll('.foto img')];
+    const visor = document.getElementById('visor');
+    const visorImg = document.getElementById('visor-img');
+    const contador = document.getElementById('visor-contador');
+    let actual = 0;
+
+    function mostrar(i) {
+      actual = (i + fotos.length) % fotos.length;   // vuelve al inicio/fin
+      const f = fotos[actual];
+      visorImg.src = f.dataset.grande || f.src;     // opcional: data-grande="foto-hd.jpg"
+      visorImg.alt = f.alt;
+      contador.textContent = (actual + 1) + ' / ' + fotos.length;
+    }
+
+    fotos.forEach((img, i) => {
+      img.closest('.foto').addEventListener('click', () => {
+        mostrar(i);
+        visor.showModal();
+        document.body.classList.add('visor-abierto');
+      });
+    });
+
+    visor.querySelector('.visor-cerrar').addEventListener('click', () => visor.close());
+    visor.querySelector('.visor-prev').addEventListener('click', () => mostrar(actual - 1));
+    visor.querySelector('.visor-sig').addEventListener('click', () => mostrar(actual + 1));
+
+    // Clic en el fondo cierra
+    visor.addEventListener('click', e => { if (e.target === visor) visor.close(); });
+    visor.addEventListener('close', () => document.body.classList.remove('visor-abierto'));
+
+    // Flechas del teclado (Esc cierra de forma nativa)
+    visor.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') mostrar(actual - 1);
+      if (e.key === 'ArrowRight') mostrar(actual + 1);
+    });
+
+    // Deslizar en pantallas táctiles
+    let inicioX = 0;
+    visor.addEventListener('touchstart', e => { inicioX = e.touches[0].clientX; }, { passive: true });
+    visor.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - inicioX;
+      if (Math.abs(dx) > 50) mostrar(actual + (dx < 0 ? 1 : -1));
+    });
+  </script>
+
+</body>
+
+</html>

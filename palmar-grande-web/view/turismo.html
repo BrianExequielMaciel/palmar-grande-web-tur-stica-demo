@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turismo</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="../assets/imagenes/logo-municipio-palmar-grande.png" type="image/x-icon">
+</head>
+
+<body>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&family=Pacifico&display=swap');
+
+    :root {
+      --naranja: #110f10;
+      /* Un naranja/ámbar mucho más vibrante y visible */
+      --fondo: #f6efc0;
+      --verde: #2ae90c;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      text-align: justify
+    }
+
+
+    .turismo_agenda_container {
+      background: linear-gradient(to bottom, rgba(63, 245, 7, 0.15), rgba(255, 254, 247, 1)),
+        url(palmar2026.jpeg) center/cover;
+      position: relative;
+      display: flex;
+      flex-direction: column-reverse;
+      margin-bottom: 10px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      background: linear-gradient(135deg, #4CAF50, #723c17)
+    }
+
+    .logo-turismo {
+      background: white;
+      border-radius: 20px;
+      padding: 10px 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      line-height: 0.9;
+      margin: 5px;
+    }
+
+    .logo-turismo b {
+      color: var(--naranja);
+      font-size: .9rem;
+    }
+
+    .turismo_agenda_container-title h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+      line-height: 0.9;
+      color: #222;
+      text-shadow: 2px 2px 0px white;
+    }
+
+    .turismo_agenda_container-title h1 span {
+      color: var(--naranja);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 3rem;
+      display: block;
+      text-transform: uppercase;
+    }
+
+    .turismo_agenda_container-title h1 i {
+      font-style: normal;
+    }
+
+    .container {
+      max-width: 1200px;
+      padding: 0 15px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+
+
+    .card {
+      background: #111;
+      border-radius: 22px;
+      padding: 14px 14px 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      padding-top: 28px;
+      min-height: 165px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: .2s;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    /* MEJORA CLAVE PARA LO NARANJA: Visibilidad total */
+    .mes-tag {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #080808;
+      /* Naranja fuerte y profundo */
+      color: #ffffff;
+      /* Texto blanco puro */
+      padding: 6px 24px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: .9rem;
+      z-index: 5;
+      letter-spacing: 0.5px;
+      border: 2px solid #ffffff;
+      /* Borde blanco para destacarlo de la foto */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      /* Sombra para que flote visualmente */
+    }
+
+    /* Imagen de fondo con brillo equilibrado */
+    .card img.preview-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 22px;
+      z-index: 1;
+      filter: brightness(0.65);
+    }
+
+    /* Sombra interna para asegurar que el texto de adentro también se lea */
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+      z-index: 2;
+      border-radius: 22px;
+      pointer-events: none;
+    }
+
+    .card-content {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      height: 100%;
+      position: relative;
+      z-index: 3;
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      flex-shrink: 0;
+      width: 60px;
+      text-align: center;
+    }
+
+    .card-text b {
+      display: block;
+      background: rgba(255, 210, 138, 0.95);
+      color: #111;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: .8rem;
+      width: fit-content;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .card-text h3 {
+      font-size: 1.05rem;
+      line-height: 1.1;
+      color: #ffffff;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+    }
+
+    .card-text small {
+      display: block;
+      margin-top: 4px;
+      font-size: .8rem;
+      padding: 3px 8px;
+      border-radius: 8px;
+      width: fit-content;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .bg-blue {
+      background: rgba(13, 76, 146, 0.9) !important;
+      color: #fff !important;
+    }
+
+    .bg-green {
+      background: rgba(46, 125, 50, 0.9) !important;
+      color: #fff !important;
+    }
+
+    .bg-pink {
+      background: rgba(5, 255, 18, 0.9) !important;
+      color: #fff !important;
+    }
+
+
+    .turismo_info-details {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: flex-end;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .turismo_video-container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .turismo_video {
+      border-radius: 15px;
+      max-width: 400px;
+      position: relative;
+      /* necesario para que z-index funcione */
+      z-index: 2;
+      /* queda por encima de la caja 1 */
+      margin-top: -80px;
+    }
+
+    .turismo_container {
+      background-size: cover;
+      height: 400px;
+    }
+
+    .turismo_contacto-container {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin: auto;
+      padding: 10px;
+    }
+
+    .turismo_map-container {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      margin: 20px;
+      border: 1px solid black;
+      border-radius: 15px;
+      padding: 30px;
+      width: 600px;
+      align-items: center;
+      background-color: #073f35;
+      text-align: justify;
+    }
+
+    .turismo-map {
+      width: 100%;
+      height: 400px;
+    }
+
+    .turismo-cards {
+      color: white;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      margin: 20px;
+      border-radius: 15px;
+      padding: 30px;
+      width: 80%;
+      text-align: justify;
+      background: linear-gradient(135deg, #4CAF50, #073f35 48%, #F44336);
+      opacity: 0.9;
+    }
+
+    main {
+      height: 100%;
+    }
+
+    @media (max-width:1200px) {
+      p {
+        font-size: 1.1rem;
+        text-align: justify
+      }
+
+      .turismo_video {
+        margin-top: 0;
+        /* anula el margen negativo */
+        margin-left: 0;
+        /* ya no se pega a la derecha */
+        width: 100%
+      }
+    }
+
+    @media(max-width:900px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 1.6;
+        text-align: justify
+      }
+
+      .turismo_video {
+        margin-top: 0;
+        /* anula el margen negativo */
+        margin-left: 0;
+        /* ya no se pega a la derecha */
+        width: 100%
+      }
+    }
+
+
+    @media(max-width:500px) {
+      p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        text-align: justify
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .turismo_info-details {
+        align-content: flex-start;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .turismo_video {
+
+        margin-top: 0;
+        /* anula el margen negativo */
+        margin-left: 0;
+        /* ya no se pega a la derecha */
+        width: 100%
+      }
+
+      .turismo_video-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media(max-width:396px) {
+      .turismo_video {
+
+        margin-top: 0;
+        /* anula el margen negativo */
+        margin-left: 0;
+        /* ya no se pega a la derecha */
+        width: 100%;
+        max-width: 300;
+      }
+    }
+  </style>
+  <header class="site-header" id="inicio">
+    <a class="brand" href="#inicio" aria-label="Palmar Grande - Inicio">
+
+      <span>
+        <strong>PALMAR<br>GRANDE</strong>
+        <small>CORRIENTES · ARGENTINA</small>
+      </span>
+    </a>
+
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="../index.html">Inicio</a>
+      <a href="./historia.html">Historia</a>
+      <a class="active" href="#turismo">Turismo</a>
+      <a href="./naturaleza.html">Naturaleza</a>
+      <a href="./cultura.html">Cultura</a>
+      <a href="./galeria.html">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+  <main>
+
+
+
+    <div class="turismo_ag-container">
+      <div class="turismo_agenda_container">
+        <div class="top-bar">
+          <div class="turismo_agenda_container-title">
+            <h1>Calendario de eventos</h1>
+          </div>
+          <div class="logo-turismo">☀️ SECRETARÍA DE<br><b>TURISMO</b></div>
+        </div>
+        <div class="turismo_container">
+          <iframe class="turismo-map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d674.6509314757267!2d-57.90078955685901!3d-27.94162910240963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x945043c5c715fb1f%3A0x6a972956104dc!2sMunicipalidad!5e1!3m2!1ses!2sar!4v1792452103310!5m2!1ses!2sar"
+            style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="grid" id="grid">
+          <!-- ENERO -->
+          <div class="card" data-mes="ENERO">
+            <div class="mes-tag">ENERO</div>
+            <div class="card-content">
+              <div class="card-icon"></div>
+              <div class="card-text"><b>Verano</b>
+                <h3>Vacaciones en el pueblo</h3><small class="bg-blue">Mateada y Chamamé</small>
+              </div>
+
+            </div>
+            <img class="preview-img" src="../assets/imagenes/Imagenes_de_palmar/verano.jpg" alt="Enero">
+
+          </div>
+
+          <!-- FEBRERO -->
+          <div class="card" data-mes="FEBRERO">
+            <div class="mes-tag">FEBRERO</div>
+            <div class="card-content">
+              <div class="card-icon"></div>
+              <div class="card-text">
+                <h3>balneario <br>Don Centurion</h3>
+              </div>
+            </div>
+            <img class="preview-img" src="../assets/imagenes/Imagenes_de_palmar/balneariodc.jpg" alt="Febrero">
+          </div>
+
+          <!-- MARZO -->
+          <div class="card" data-mes="MARZO">
+            <div class="mes-tag">MARZO</div>
+            <div class="card-content">
+              <div class="card-icon"></div>
+              <div class="card-text"><b>12 de marzo</b>
+                <h3>Aniversario de<br>Palmar Grande</h3><small class="bg-blue"></small>
+              </div>
+            </div>
+            <img class="preview-img" src="../assets/imagenes/Imagenes_de_palmar/palmar2026.jpeg" alt="Marzo">
+          </div>
+
+          <!-- ABRIL -->
+          <div class="card" data-mes="ABRIL">
+            <div class="mes-tag">ABRIL</div>
+            <div class="card-content">
+              <div class="card-icon"></div>
+              <div class="card-text">
+                <h3>Circuito<br>Religioso</h3><small class="bg-green">Semana Santa</small>
+              </div>
+            </div>
+            <img class="preview-img" src="../assets/imagenes/Imagenes_de_palmar/semanasanta.jpg" alt="Abril">
+          </div>
+
+          <!-- MAYO -->
+          <div class="card" data-mes="MAYO">
+            <div class="mes-tag">MAYO</div>
+            <div class="card-content">
+              <div class="card-icon"></div>
+              <div class="card-text"><b>1 al 3 de mayo</b>
+                <h3>Fiesta Provincial<br>del Mencho Correntino</h3><small>Festival Curuzú José</small>
+              </div>
+            </div>
+            <img class="preview-img" src="../assets/imagenes/Imagenes_de_palmar/menchocorrentino.jpg" alt="Mayo">
+          </div>
+
+          <!-- JUNIO -->
+          <div class="card" data-mes="JUNIO">
+            <div class="mes-tag">JUNIO</div>
+            <div class="card-content">
+              <div class="card-icon"></div>
+              <div class="card-text">
+                <h3>Día de la<br>Bandera<br>y Jineteadas</h3>
+              </div>
+            </div>
+            <img class="preview-img" src="../assets/imagenes/Imagenes_de_palmar/bandera.jpg" alt="Junio">
+          </div>
+
+          <!-- JULIO -->
+          <div class="card" data-mes="JULIO">
+            <div class="mes-tag">JULIO</div>
+            <div class="card-content">
+              <div class="card-icon"></div>
+              <div class="card-text">
+                <h3>Vacaciones<br>de invierno</h3>
+              </div>
+            </div>
+            <img class="preview-img" src="../assets/imagenes/Imagenes_de_palmar/copo-nieve.jpeg" alt="Julio">
+          </div>
+
+          <!-- AGOSTO -->
+          <div class="card" data-mes="AGOSTO">
+            <div class="mes-tag">AGOSTO</div>
+            <div class="card-content">
+              <div class="card-icon"></div>
+              <div class="card-text"><b>17 de agosto</b>
+                <h3>Fiesta Patria<br>Gran Fiesta<br>del Mencho</h3>
+              </div>
+            </div>
+            <img class="preview-img" src="../assets/imagenes/Imagenes_de_palmar/fiestapatria.jpg" alt="Agosto">
+          </div>
+
+          <!-- SEPTIEMBRE -->
+          <div class="card" data-mes="SEPTIEMBRE">
+            <div class="mes-tag">SEPTIEMBRE</div>
+            <div class="card-content">
+              <div class="card-icon"></div>
+              <div class="card-text">
+                <h3>Fiesta del<br>Estudiante y de<br>la Primavera</h3>
+              </div>
+            </div>
+            <img class="preview-img" src="../assets/imagenes/Imagenes_de_palmar/primavera.jpeg" alt="Septiembre">
+          </div>
+
+          <!-- OCTUBRE -->
+          <div class="card" data-mes="OCTUBRE">
+            <div class="mes-tag">OCTUBRE</div>
+            <div class="card-content">
+              <div class="card-icon"></div>
+              <div class="card-text">
+                <h3>Fiesta de la<br>Tradición<br>Rural</h3>
+              </div>
+            </div>
+            <img class="preview-img" src="../assets/imagenes/Imagenes_de_palmar/carai_octubre.jpeg" alt="Octubre">
+          </div>
+
+          <!-- NOVIEMBRE -->
+          <div class="card" data-mes="NOVIEMBRE">
+            <div class="mes-tag">NOVIEMBRE</div>
+            <div class="card-content">
+              <div class="card-icon"></div>
+              <div class="card-text">
+                <b>01 de nov</b>
+                <h3>Angeles somos</h3>
+                <b>10 al 12 de nov</b>
+                <h3>Cabalgata de<br>la Tradición</h3>
+
+              </div>
+            </div>
+            <img class="preview-img" src="../assets/imagenes/Imagenes_de_palmar/cabalgata.jpeg" alt="Noviembre">
+          </div>
+
+          <!-- DICIEMBRE -->
+          <div class="card" data-mes="DICIEMBRE">
+            <div class="mes-tag">DICIEMBRE</div>
+            <div class="card-content">
+              <div class="card-icon"></div>
+              <div class="card-text">
+                <h3>Vivamos la<br>Navidad<br>Palmareña</h3><small class="bg-pink"></small>
+              </div>
+            </div>
+            <img class="preview-img" src="../assets/imagenes/Imagenes_de_palmar/navidad.jpeg" alt="Diciembre">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="contacto" class="turismo_contacto-container">
+      <div class="turismo-cards">
+        <div class="turismo_info-details">
+          <p><b>INFORMACIÓN DE CONTACTO:</b></p>
+          <p><b>Mas informacion a traves del siguiente medio de contacto.</b> </p>
+          <p><b>Correo:</b> secretariapalmargrande@outlook.es </p>
+        </div>
+
+        <div class="turismo_video-container">
+          <video class="turismo_video" muted playsinline autoplay>
+            <source src="../assets/videoMuestra.mp4">
+            tu navegador no soporta este video
+          </video>
+          </di>
+
+          <div style="    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: flex-start;">
+            <p>Establecimiento "La Milagrosa"</p>
+            <p>Todos los años el 01 de Mayo</p>
+            <p>Fiesta Provincial del Mencho Correntino</p>
+          </div>
+        </div>
+
+      </div>
+
+
+  </main>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand"> <strong>PALMAR GRANDE</strong></div>
+        <p>Un pueblo con historia, tradición y un futuro lleno de oportunidades.</p>
+        <div class="socials">
+          <a class="face-logo" href="https://www.facebook.com/profile.php?id=100064782816824" aria-label="Facebook"></a>
+          <a class="insta-logo" href="instagram.com"></a>
+        </div>
+      </div>
+      <div>
+        <h3>NAVEGACIÓN</h3>
+        <a href="../index.html">Inicio</a>
+        <a href="./historia.html">Historia</a>
+        <a href="./turismo.html">Turismo</a>
+        <a href="./naturaleza.html">Naturaleza</a>
+        <a href="./cultura.html">Cultura</a>
+      </div>
+      <div>
+        <h3>INFORMACIÓN</h3>
+        <p>Municipalidad de Palmar Grande</p>
+        <p>Palmar Grande, Corrientes</p>
+        <p></p>
+        <p>✉ secretariapalmargrande@outlook.es</p>
+      </div>
+      <div>
+        <h3>NEWSLETTER</h3>
+        <p>Suscribite para recibir novedades y eventos.</p>
+        <form class="newsletter" onsubmit="return subscribe(event)"><input type="email"
+            placeholder="Tu correo electrónico" required><button>Suscribirme</button></form>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Palmar Grande · Corrientes, Argentina. ISFD Sub Sede Palmar Grande. TSDS</div>
+  </footer>
+</body>
+<script>const menuButton = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.main-nav');
+
+  menuButton?.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  document.querySelectorAll('.main-nav a').forEach(link => {
+    link.addEventListener('click', () => nav.classList.remove('open'));
+  });</script>
+</body>
+
+</html>
