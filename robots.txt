@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://v1-palmar-grande-app-turistica.netlify.app/sitemap.xml

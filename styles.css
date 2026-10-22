@@ -116,7 +116,7 @@ a {
 
 @keyframes cambiarFondo {
     0%, 28% {
-        background-image: url("./assets/imagenes/palmar2026.jpeg");    
+        background-image: url("./assets/imagenes/palmar2026.webp");    
     }
     33.3%, 61.3% {
         background-image: url("./assets/imagenes/imagen_portada2.jpeg");
@@ -125,7 +125,7 @@ a {
         background-image: url("./assets/imagenes/imagen_portada3.jpeg");
     }
     100% {
-        background-image: url("./assets/imagenes/palmar2026.jpeg");
+        background-image: url("./assets/imagenes/palmar2026.webp");
     }
 }
 
@@ -167,7 +167,7 @@ a {
 
 .hero-content>p:not(.script) {
     font-size: 19px;
-    color: #263a30
+    color: hsl(150, 100%, 99%)
 }
 
 .hero-actions {
@@ -351,12 +351,12 @@ a {
 
 .photo-sunset {
     /* background: linear-gradient(135deg, #8133db, #e20f0f 48%, #3b6c54) */
-background-image: url(".//assets/imagenes/Imagenes_de_palmar/atardecer.jpeg");
+background-image: url(".//assets/imagenes/Imagenes_de_palmar/atardecer.webp");
 }
 
 .photo-building {
     /* background: linear-gradient(135deg, #fbff00, #b59d74) */
-    background-image: url("./assets/imagenes/Imagenes_de_palmar/index_patrimonio.jpeg");
+    background-image: url("./assets/imagenes/Imagenes_de_palmar/index_patrimonio.webp");
 }
 
 .photo-riders {
