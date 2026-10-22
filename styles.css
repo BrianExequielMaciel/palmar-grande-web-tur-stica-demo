@@ -106,7 +106,7 @@ a {
   place-items: center;
   text-align: center;
   overflow: hidden;
-  isolation: isolate;            /* mantiene el z-index del fondo dentro del hero */
+  isolation: isolate;            
 }
 
 .hero-fondo {
@@ -137,10 +137,7 @@ a {
 }
 
 /* Respeta a quien prefiere menos movimiento: solo se ve la primera */
-@media (prefers-reduced-motion: reduce) {
-  .hero-fondo img { animation: none; }
-  .hero-fondo img:not(:first-child) { display: none; }
-}
+
  /* background: linear-gradient(110deg, #d8e3cf 0%, #e9d5ad 48%, #537e55 100%); */
     
 
@@ -359,10 +356,10 @@ a {
     grid-row: span 2
 }
 
-.photo-town {
+/* .photo-town { */
     /* background: linear-gradient(140deg, #3f11b2, #2d5e3c) */
 
-}
+/* }   */
 
 .photo-sunset {
     /* background: linear-gradient(135deg, #8133db, #e20f0f 48%, #3b6c54) */
@@ -840,4 +837,5 @@ background-image: url("./assets/imagenes/Imagenes_de_palmar/mural_Jose.jpg");
     .photo {
         font-size: 11px
     }
+
 }
