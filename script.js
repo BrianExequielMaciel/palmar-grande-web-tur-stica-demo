@@ -23,18 +23,4 @@ const observer = new IntersectionObserver((entries) => {
 
 sections.forEach(section => observer.observe(section));
 
-function sendMessage(event) {
-  event.preventDefault();
-  const status = document.querySelector('.form-status');
-  status.textContent = '¡Gracias! Tu mensaje quedó preparado para ser conectado a un correo o formulario real.';
-  event.target.reset();
-  return false;
-}
 
-function subscribe(event) {
-  event.preventDefault();
-  const button = event.target.querySelector('button');
-  button.textContent = '¡Listo!';
-  event.target.reset();
-  return false;
-}

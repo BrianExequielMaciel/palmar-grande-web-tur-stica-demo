@@ -226,8 +226,10 @@
       <div>
         <h3>NEWSLETTER</h3>
         <p>Suscribite para recibir novedades y eventos.</p>
-        <form class="newsletter" onsubmit="return subscribe(event)"><input type="email"
-            placeholder="Tu correo electrónico" required><button>Suscribirme</button></form>
+        <form class="newsletter" netlify>
+          <input name="email" type="email" placeholder="Tu correo electrónico" required>
+          <button type="submit">Suscribirme</button>
+        </form>
       </div>
     </div>
     <div class="copyright">© 2026 Palmar Grande · Corrientes, Argentina. ISFD Sub Sede Palmar Grande. TSDS</div>
